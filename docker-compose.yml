@@ -1,24 +1,8 @@
-version: '3.9'
-
 services:
-  app:
-    build: .
-    container_name: shorter-url
-    ports:
-      - '3000:3000'
-    env_file:
-      - .env
-    depends_on:
-      - db
-    volumes:
-      - .:/app
-      - /app/node_modules
-    command: sh -c "npx prisma migrate deploy && npm run start:dev"
-
   db:
     image: postgres
-    container_name: shorter-url-db
     restart: always
+    container_name: shorter-url-db
     environment:
       POSTGRES_USER: developer
       POSTGRES_PASSWORD: dev123 # only in dev
@@ -27,6 +11,25 @@ services:
       - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   container_name: shorter-url
+  #   restart: always
+  #   volumes:
+  #     - ./src:/src
+  #     # - .:/app
+  #     # - /app/node_modules
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - '3000:3000'
+  #     - '5555:5555'
+  #   depends_on:
+  #     - db
+  #   # command: sh -c "npx prisma migrate dev && npm run start:dev"
 
 volumes:
   postgres_data:
