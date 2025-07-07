@@ -17,8 +17,9 @@ export class UrlController {
     constructor(private urlService: UrlService) {}
 
     @Post('shorten')
-    async create(@Body() body: CreateUrlDto) {
-        return this.urlService.createUrl(body);
+    create(@Body() createUrlDto: CreateUrlDto) {
+    console.log(createUrlDto);
+    return this.urlService.createUrl(createUrlDto);
     }
 
     @Get(':code')
