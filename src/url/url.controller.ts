@@ -40,7 +40,7 @@ export class UrlController {
 
     // Protected route: List all URLs for the authenticated user
     @UseGuards(JwtAuthGuard)
-    @Get('urls/my')
+    @Get('urls/me')
     findMyUrls(@CurrentUser() user: User) {
         return this.urlService.findByUserId(user.id);
     }
