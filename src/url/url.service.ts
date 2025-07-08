@@ -21,6 +21,41 @@ export class UrlService {
         return { shortUrl: `http://localhost:3000/${shortCode}`}
     }
 
+    async updateUrl(id: string, newUrl: string, userId: string) {
+        const url = await this.prisma.url.findUnique({ where: { id } });
+
+        if (!url || url.deletedAt) {
+            throw new NotFoundException('URL not found');
+        }
+
+        if (url.userId !== userId) {
+            throw new NotFoundException('Unauthorized to update this URL');
+        }
+
+        return this.prisma.url.update({
+            where: { id },
+            data: { originalUrl: newUrl}
+        })
+    }
+
+    async deleteUrl(id: string, userId: string) {
+        const url = await this.prisma.url.findUnique({ where: { id }})
+
+        if (!url || url.deletedAt) {
+            throw new NotFoundException('URL not found');
+        }
+        
+        if (url.userId !== userId) {
+            throw new NotFoundException('Unauthorized to delete this URL');
+        }
+
+        return this.prisma.url.update({
+            where: { id },
+            data: { deletedAt: new Date() },
+        });
+
+    }
+
     async redirect(shortCode: string) {
         const url = await this.prisma.url.findFirst({
             where: {
