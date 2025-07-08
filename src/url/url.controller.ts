@@ -1,10 +1,13 @@
 import { 
     Body, 
     Controller, 
+    Delete, 
     Get, 
     NotFoundException, 
     Param, 
     Post, 
+    Put, 
+    Req, 
     Res, 
     UseGuards
 } from "@nestjs/common";
@@ -43,5 +46,21 @@ export class UrlController {
     @Get('urls/me')
     findMyUrls(@CurrentUser() user: User) {
         return this.urlService.findByUserId(user.id);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Put('urls/:id')
+    async updateUrl(
+        @Param('id') id: string, 
+        @Body() Body: CreateUrlDto, 
+        @Req() req
+    ) {
+        return this.urlService.updateUrl(id, Body.originalUrl, req.user.id);
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Delete('urls/:id')
+    async deleteUrl(@Param('id') id: string, @Req() req) {
+        return this.urlService.deleteUrl(id, req.user.id);
     }
 }
