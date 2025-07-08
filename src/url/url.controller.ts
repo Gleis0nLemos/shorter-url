@@ -17,19 +17,21 @@ import { Response } from "express";
 import { CurrentUser } from "src/auth/decorators/current-user.decorator";
 import { User } from "@prisma/client";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
+import { OptionalJwtAuthGuard } from "src/auth/guards/optional-jwt-auth.guard";
 
 
 @Controller()
 export class UrlController {
     constructor(private urlService: UrlService) {}
 
+    @UseGuards(OptionalJwtAuthGuard)
     @Post('shorten')
     create(
         @Body() createUrlDto: CreateUrlDto,
         @CurrentUser() user?: User, // optional user for authenticated requests
     ) {
-    // console.log(createUrlDto);
-    return this.urlService.createUrl(createUrlDto);
+        // console.log(createUrlDto);
+        return this.urlService.createUrl(createUrlDto, user?.id);
     }
 
     @Get(':code')
