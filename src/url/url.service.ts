@@ -9,7 +9,6 @@ export class UrlService {
     constructor(private prisma: PrismaService) {}
 
     async createUrl(data: CreateUrlDto, userId?: string) {
-        console.log('userId recebido:', userId); // ✅ Deve imprimir algo
         
         const shortCode = nanoid(6);
         const url = await this.prisma.url.create({
