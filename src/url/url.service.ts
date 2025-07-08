@@ -39,5 +39,22 @@ export class UrlService {
         return url.originalUrl;
     }
 
+    async findByUserId(userId: string) {
+        return this.prisma.url.findMany({
+            where: {
+                userId,
+                deletedAt: null,
+            },
+            select: {
+                id: true,
+                shortCode: true,
+                originalUrl: true,
+                clickCount: true,
+                createdAt: true,
+                updatedAt: true,
+            }
+        })
+    }
+
 
 }
