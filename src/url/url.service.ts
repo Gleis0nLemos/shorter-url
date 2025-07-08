@@ -8,13 +8,15 @@ import { nanoid } from "nanoid";
 export class UrlService {
     constructor(private prisma: PrismaService) {}
 
-    async createUrl(data: CreateUrlDto) {
+    async createUrl(data: CreateUrlDto, userId?: string) {
+        console.log('userId recebido:', userId); // ✅ Deve imprimir algo
         
         const shortCode = nanoid(6);
         const url = await this.prisma.url.create({
             data: {
                 originalUrl: data.originalUrl,
                 shortCode,
+                userId: userId ?? null, // If userId is not provided, set it to null
             }
         });
 
