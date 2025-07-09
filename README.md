@@ -65,7 +65,7 @@ npm run start:dev
 ```
 4. Em um terminal a parte, rode as migrações que geram as tabelas do banco
 ```bash
-npm run migrate
+npx prisma migrate dev
 ```
 ---
 ### Com Docker e Docker compose instalado, execute esses 
