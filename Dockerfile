@@ -1,15 +1,19 @@
 FROM node:latest
 
-# Set the working directory inside the container
-# WORKDIR /app
+# Cria e define o diretório de trabalho
+WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Copia os arquivos de dependência primeiro (melhora cache)
 COPY package*.json ./
+
+# Instala as dependências
 RUN npm install
 
-# Copy the rest of the application files
+# Copia o restante da aplicação
 COPY . .
 
-# RUN npm run build
+# Expõe as portas usadas pela aplicação e Prisma Studio
+EXPOSE 3000 5555
 
-CMD [ "npm" , "run" , "start:dev" ]
+# Comando padrão para desenvolvimento
+CMD ["npm", "run", "start:dev"]
