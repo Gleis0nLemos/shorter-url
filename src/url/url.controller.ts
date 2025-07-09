@@ -27,6 +27,7 @@ export class UrlController {
     constructor(private urlService: UrlService) {}
 
     @UseGuards(OptionalJwtAuthGuard)
+    @ApiBearerAuth()
     @Post('shorten')
     @ApiOperation({ summary: 'Encurtar uma URL (com ou sem autenticação)' })
     @ApiBody({ type: CreateUrlDto })
