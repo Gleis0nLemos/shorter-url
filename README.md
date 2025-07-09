@@ -44,18 +44,26 @@ Este projeto foi desenvolvido como parte do processo seletivo para a **Teddy Ope
 git clone https://github.com/Gleis0nLemos/shorter-url
 cd shorter-url
 ```
+
 ---
 ### Caso não use Docker, execute esses comandos 
 
-1. Instale todas as dependências
+1. Edite o arquivo .env com os valores abaixo:
+```bash
+DATABASE_URL=postgresql://developer:dev123@localhost:5432/shorturldb
+JWT_SECRET=sua_chave_secreta
+BASE_URL=http://localhost:3000
+```
+
+2. Instale todas as dependências
 ```bash
 npm install
 ```
-2. Inicie a API
+3. Inicie a API
 ```bash
 npm run start:dev
 ```
-3. Em um terminal a parte, rode as migrações que geram as tabelas do banco
+4. Em um terminal a parte, rode as migrações que geram as tabelas do banco
 ```bash
 npm run migrate
 ```
