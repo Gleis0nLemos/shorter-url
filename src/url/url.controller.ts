@@ -18,8 +18,10 @@ import { CurrentUser } from "src/auth/decorators/current-user.decorator";
 import { User } from "@prisma/client";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 import { OptionalJwtAuthGuard } from "src/auth/guards/optional-jwt-auth.guard";
+import { ApiTags } from "@nestjs/swagger";
 
 
+@ApiTags('URLs')
 @Controller()
 export class UrlController {
     constructor(private urlService: UrlService) {}
