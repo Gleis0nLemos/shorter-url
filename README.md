@@ -80,7 +80,7 @@ BASE_URL=http://localhost:3000
 ```bash
 docker compose up
 ```
-3. Se quiser ver ter acesso ao prisma studio, rode:
+3. Se quiser ter acesso ao prisma studio, rode:
 ```
  docker exec -it shorter-url npx prisma studio
 ```
@@ -112,9 +112,9 @@ Abaixo uma visão do Swagger, para melhor compreensão dos endpoints disponívei
 
 ## 🚀 Tecnologias Utilizadas
 
-- [NestJS](https://nestjs.com/) é um framework Node.js com TypeScript, baseado em módulos e injeção de dependência. Ideal para construir **APIs escaláveis e performáticas**, como este encurtador de links.
-- [Prisma](https://www.prisma.io/) é um ORM moderno que facilita o acesso ao banco de dados com **tipagem segura e comandos simples** para criar, ler, atualizar e deletar dados.  
-- [PostgreSQL](https://www.postgresql.org/) é um banco de dados relacional robusto e open-source, usado para **armazenar usuários, URLs e dados de autenticação**.
+- [NestJS](https://nestjs.com/) framework Node.js com TypeScript, baseado em módulos e injeção de dependência. Usado para a API do encurtador.
+- [Prisma](https://www.prisma.io/) ORM moderno com tipagem segura, usado para operações no banco de dados.
+- [PostgreSQL](https://www.postgresql.org/) banco de dados relacional utilizado para armazenar usuários, URLs e autenticação.
 - [Swagger](https://swagger.io/) gera a **documentação interativa da API** automaticamente, com base nos decorators do NestJS. Permite visualizar e testar endpoints facilmente. 
 - [Logger](https://docs.nestjs.com/techniques/logger) padrão do Nest para registrar informações, erros e ações da aplicação, ajudando no **debug e monitoramento**.
 
